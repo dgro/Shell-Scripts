@@ -13,3 +13,5 @@ apt-get -y install mariadb-server
 service mysql stop
 sed -i '/bind-address/s/.*/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
 service mysql start
+mysql -u root mysql -e "UPDATE mysql.user SET host=\"%\" WHERE host=\"127.0.0.1\" AND user=\"root\";"
+service mysql restart
